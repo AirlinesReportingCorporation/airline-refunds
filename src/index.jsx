@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.jsx';
+import App from './app.jsx';
 import "./scss/main.scss"; 
 
 var mountNode = document.getElementById('app');
