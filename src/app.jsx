@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import * as moment from "moment";
-import numeral from "numeral";
 import axios from "axios";
 import XLSX from "xlsx";
 
@@ -18,13 +17,42 @@ class App extends Component {
       filterTicket: "ALL",
       filterObj: [],
       refundFilter: [],
-      refundList: []
+      refundList: [],
+      sortType: "asc"
     };
     this.setFilter = this.setFilter.bind(this);
+    this.setTicketFilter = this.setTicketFilter.bind(this);
+    this.setSort = this.setSort.bind(this);
   }
 
   setFilter(val) {
     this.setState({ filter: val });
+  }
+
+  setTicketFilter(val) {
+    this.setState({ filterTicket: val });
+  }
+
+  setSort(val) {
+    var jsonData1 = this.state.jsonData;
+
+    if (val == "asc") {
+      jsonData1.sort(propComparator("Name", 1));
+    } else if (val == "desc") {
+      jsonData1.sort(propComparator("Name", -1));
+    } else if (val == "recent") {
+      jsonData1.sort(
+        propComparator("Refund or Ticket Validity Information Last Updated", 1)
+      );
+    }
+
+    console.log(jsonData1);
+
+    console.log(val);
+
+    this.setState({ sortType: val });
+
+    this.setState({ jsonData: jsonData1 });
   }
 
   componentDidMount() {
@@ -77,6 +105,7 @@ class App extends Component {
   render() {
     const jsonHeaders = this.state.jsonHeaders;
     var filter = this.state.filter;
+    console.log(moment.utc("6 Mar 17"));
     return (
       <div className="refundPage">
         <div className="refundJumbo">
@@ -106,9 +135,12 @@ class App extends Component {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
+                <div className="refundFiltersTitle">Filters:</div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-5">
                 <div className="refundFilters">
-                  <div className="refundFiltersTitle">Filters:</div>
-
                   <div className="refundFiltersContainer">
                     <div className="refundFiltersLabel">Refunds</div>
                     <div className="optionGroup">
@@ -131,10 +163,15 @@ class App extends Component {
                         Via GDS
                       </div>
                       <div
-                        onClick={this.setFilter.bind(this, "Via GDS (Reinstated)")}
+                        onClick={this.setFilter.bind(
+                          this,
+                          "Via GDS (Reinstated)"
+                        )}
                         className={
                           "optionGroupItem" +
-                          (this.state.filter == "Via GDS (Reinstated)" ? " active" : "")
+                          (this.state.filter == "Via GDS (Reinstated)"
+                            ? " active"
+                            : "")
                         }
                       >
                         Via GDS (Reinstated)
@@ -143,7 +180,7 @@ class App extends Component {
                         onClick={this.setFilter.bind(this, "Managing Directly")}
                         className={
                           "optionGroupItem" +
-                          ((this.state.filter.indexOf("Managing Directly") > -1)
+                          (this.state.filter.indexOf("Managing Directly") > -1
                             ? " active"
                             : "")
                         }
@@ -154,21 +191,126 @@ class App extends Component {
                   </div>
                 </div>
               </div>
+              <div className="col-lg-3">
+                <div className="refundFilters">
+                  <div className="refundFiltersContainer">
+                    <div className="refundFiltersLabel">Ticket Validity</div>
+                    <div className="optionGroup">
+                      <div
+                        onClick={this.setTicketFilter.bind(this, "ALL")}
+                        className={
+                          "optionGroupItem" +
+                          (this.state.filterTicket == "ALL" ? " active" : "")
+                        }
+                      >
+                        All
+                      </div>
+                      <div
+                        onClick={this.setTicketFilter.bind(this, "13 Months")}
+                        className={
+                          "optionGroupItem" +
+                          (this.state.filterTicket == "13 Months"
+                            ? " active"
+                            : "")
+                        }
+                      >
+                        13 Months
+                      </div>
+                      <div
+                        onClick={this.setTicketFilter.bind(this, "> 13 Months")}
+                        className={
+                          "optionGroupItem" +
+                          (this.state.filterTicket == "> 13 Months"
+                            ? " active"
+                            : "")
+                        }
+                      >
+                        > 13 Months
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="refundFilters">
+                  <div className="refundFiltersContainer">
+                    <div className="refundFiltersLabel">Sort</div>
+                    <div className="optionGroup">
+                      <div
+                        onClick={this.setSort.bind(this, "asc")}
+                        className={
+                          "optionGroupItem" +
+                          (this.state.sortType == "asc" ? " active" : "")
+                        }
+                      >
+                        Name (Asc)
+                      </div>
+                      <div
+                        onClick={this.setSort.bind(this, "desc")}
+                        className={
+                          "optionGroupItem" +
+                          (this.state.sortType == "desc" ? " active" : "")
+                        }
+                      >
+                        Name (Desc)
+                      </div>
+                      <div
+                        onClick={this.setSort.bind(this, "recent")}
+                        className={
+                          "optionGroupItem" +
+                          (this.state.sortType == "recent" ? " active" : "")
+                        }
+                      >
+                        Recent Changes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
               <div className="col-lg-12">
                 {this.state.filter &&
+                  this.state.filterTicket &&
                   this.state.jsonData.map((data, i) => {
+                    var comboTruth = false;
+                    var refundShow = false;
+                    var ticketShow = false;
+
                     var className = "hide";
 
                     var filter = this.state.filter;
+                    var filterTicket = this.state.filterTicket;
+
+                    //console.log(filterTicket);
+
                     if (filter == "ALL") {
-                      className = "show";
-                    } else if (data["Refunds"].indexOf(this.state.filter) > -1) {
-                      className = "show";
+                      refundShow = true;
+                    } else if (
+                      data["Refunds"].indexOf(this.state.filter) > -1
+                    ) {
+                      refundShow = true;
                     }
+
+                    if (filterTicket == "ALL") {
+                      ticketShow = true;
+                    } else if (
+                      filterTicket == "13 Months" &&
+                      data["Ticket Validity"] == "13 Months"
+                    ) {
+                      ticketShow = true;
+                    } else if (
+                      filterTicket == "> 13 Months" &&
+                      data["Ticket Validity"] != "13 Months"
+                    ) {
+                      ticketShow = true;
+                    }
+
+                    className = refundShow && ticketShow ? "show" : "hide";
 
                     return (
                       <div key={i} className={className}>
-                        <RefundRow  data={data} filters="filter" />
+                        <RefundRow data={data} filters="filter" />
                       </div>
                     );
                   })}
@@ -179,6 +321,39 @@ class App extends Component {
       </div>
     );
   }
+}
+
+function propComparator(val, inverse) {
+  return function(a, b) {
+
+    if (val == "Name") {
+      var x = a[val].toString().toLowerCase();
+      var y = b[val].toString().toLowerCase();
+
+      if (x < y) {
+        return -1 * inverse;
+      }
+      if (x > y) {
+        return 1 * inverse;
+      }
+    }
+
+    if (val == "Refund or Ticket Validity Information Last Updated") {
+      var x = a[val] ? parseInt(moment(a[val].replace(/-/g, " ")).format("YYYYMMDD")) : 1;
+      var y = b[val] ? parseInt(moment(b[val].replace(/-/g, " ")).format("YYYYMMDD")) : 1;
+
+      if (x < y) {
+        console.log("before")
+        return 1;
+      }
+      if (x > y) {
+        console.log("after");
+        return -1;
+      }
+    }
+
+    return 0;
+  };
 }
 
 export default App;
