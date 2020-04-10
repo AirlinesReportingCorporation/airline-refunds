@@ -15,6 +15,7 @@ class App extends Component {
       jsonData: [],
       refundData: [],
       filter: "ALL",
+      filterTicket: "ALL",
       filterObj: [],
       refundFilter: [],
       refundList: []
@@ -130,10 +131,19 @@ class App extends Component {
                         Via GDS
                       </div>
                       <div
+                        onClick={this.setFilter.bind(this, "Via GDS (Reinstated)")}
+                        className={
+                          "optionGroupItem" +
+                          (this.state.filter == "Via GDS (Reinstated)" ? " active" : "")
+                        }
+                      >
+                        Via GDS (Reinstated)
+                      </div>
+                      <div
                         onClick={this.setFilter.bind(this, "Managing Directly")}
                         className={
                           "optionGroupItem" +
-                          (this.state.filter == "Managing Directly"
+                          ((this.state.filter.indexOf("Managing Directly") > -1)
                             ? " active"
                             : "")
                         }
