@@ -36,7 +36,7 @@ class App extends Component {
         new Date().toLocaleString(),
       responseType: "arraybuffer"
     }).then(function(response) {
-      console.log("===== Refunds Chart Loaded =====");
+      console.log("===== Refunds Chart Loaded ===== ");
       var data = new Uint8Array(response.data);
       var workbook = XLSX.read(data, { type: "array" });
 
