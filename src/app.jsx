@@ -38,8 +38,8 @@ class App extends Component {
 
     if (val == "asc") {
       jsonData1.sort(propComparator("Name", 1));
-    } else if (val == "desc") {
-      jsonData1.sort(propComparator("Name", -1));
+    } else if (val == "code") {
+      jsonData1.sort(propComparator("Numeric Code", 1));
     } else if (val == "recent") {
       jsonData1.sort(
         propComparator("Refund or Ticket Validity Information Last Updated", 1)
@@ -253,16 +253,16 @@ class App extends Component {
                           (this.state.sortType == "asc" ? " active" : "")
                         }
                       >
-                        Name (Asc)
+                        Name
                       </div>
                       <div
-                        onClick={this.setSort.bind(this, "desc")}
+                        onClick={this.setSort.bind(this, "code")}
                         className={
                           "optionGroupItem" +
-                          (this.state.sortType == "desc" ? " active" : "")
+                          (this.state.sortType == "code" ? " active" : "")
                         }
                       >
-                        Name (Desc)
+                        Numeric Code
                       </div>
                       <div
                         onClick={this.setSort.bind(this, "recent")}
@@ -401,7 +401,7 @@ class App extends Component {
 
 function propComparator(val, inverse) {
   return function(a, b) {
-    if (val == "Name") {
+    if (val == "Name" || val == "Numeric Code") {
       var x = a[val].toString().toLowerCase();
       var y = b[val].toString().toLowerCase();
 

@@ -25,10 +25,12 @@
 }
 
 #app {
+  color: #414042;
   min-height: 80vh;
   width: 100%;
   display: flex;
   align-items: center;
+
   .loading {
     vertical-align: middle;
     text-align: center;
