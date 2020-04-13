@@ -108,27 +108,29 @@ class App extends Component {
     console.log(moment.utc("6 Mar 17"));
     return (
       <div className="refundPage">
-        <div className="refundJumbo">
-          <h1>Airline Refund Information</h1>
-          <p>
-            The following airlines have elected to manage ARC accredited travel
-            agency refunds directly and confirmed that decision with ARC.
-            Refunds for these airlines have been inhibited through their GDSs
-            and the ARC settlement system. To make it as easy as possible for
-            agencies to contact airlines regarding refunds, ARC is providing
-            relevant contact information* below.
-          </p>
+        <div className="refundJumboContainer">
+          <div className="refundJumbo">
+            <h1>Airline Refund Information</h1>
+            <p>
+              The following airlines have elected to manage ARC accredited
+              travel agency refunds directly and confirmed that decision with
+              ARC. Refunds for these airlines have been inhibited through their
+              GDSs and the ARC settlement system. To make it as easy as possible
+              for agencies to contact airlines regarding refunds, ARC is
+              providing relevant contact information* below.
+            </p>
 
-          <p>
-            <small>
-              <span style={{ fontWeight: "bold", color: "#189bb0" }}>
-                Please note:
-              </span>{" "}
-              This information is provided as a resource by ARC. For specific
-              airline policies and guidelines, please reference the airline’s
-              website or contact the airline directly.
-            </small>
-          </p>
+            <p>
+              <small>
+                <span style={{ fontWeight: "bold", color: "#189bb0" }}>
+                  Please note:
+                </span>{" "}
+                This information is provided as a resource by ARC. For specific
+                airline policies and guidelines, please reference the airline’s
+                website or contact the airline directly.
+              </small>
+            </p>
+          </div>
         </div>
 
         <div className="refundsTable">
@@ -268,53 +270,49 @@ class App extends Component {
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-lg-12">
-                {this.state.filter &&
-                  this.state.filterTicket &&
-                  this.state.jsonData.map((data, i) => {
-                    var comboTruth = false;
-                    var refundShow = false;
-                    var ticketShow = false;
+            <div className="row refundResults">
+              {this.state.filter &&
+                this.state.filterTicket &&
+                this.state.jsonData.map((data, i) => {
+                  var comboTruth = false;
+                  var refundShow = false;
+                  var ticketShow = false;
 
-                    var className = "hide";
+                  var className = "hide";
 
-                    var filter = this.state.filter;
-                    var filterTicket = this.state.filterTicket;
+                  var filter = this.state.filter;
+                  var filterTicket = this.state.filterTicket;
 
-                    //console.log(filterTicket);
+                  //console.log(filterTicket);
 
-                    if (filter == "ALL") {
-                      refundShow = true;
-                    } else if (
-                      data["Refunds"].indexOf(this.state.filter) > -1
-                    ) {
-                      refundShow = true;
-                    }
+                  if (filter == "ALL") {
+                    refundShow = true;
+                  } else if (data["Refunds"].indexOf(this.state.filter) > -1) {
+                    refundShow = true;
+                  }
 
-                    if (filterTicket == "ALL") {
-                      ticketShow = true;
-                    } else if (
-                      filterTicket == "13 Months" &&
-                      data["Ticket Validity"] == "13 Months"
-                    ) {
-                      ticketShow = true;
-                    } else if (
-                      filterTicket == "> 13 Months" &&
-                      data["Ticket Validity"] != "13 Months"
-                    ) {
-                      ticketShow = true;
-                    }
+                  if (filterTicket == "ALL") {
+                    ticketShow = true;
+                  } else if (
+                    filterTicket == "13 Months" &&
+                    data["Ticket Validity"] == "13 Months"
+                  ) {
+                    ticketShow = true;
+                  } else if (
+                    filterTicket == "> 13 Months" &&
+                    data["Ticket Validity"] != "13 Months"
+                  ) {
+                    ticketShow = true;
+                  }
 
-                    className = refundShow && ticketShow ? "show" : "hide";
+                  className = refundShow && ticketShow ? "show" : "hide";
 
-                    return (
-                      <div key={i} className={className}>
-                        <RefundRow data={data} filters="filter" />
-                      </div>
-                    );
-                  })}
-              </div>
+                  return (
+                    <div key={i} className={"col-lg-12 " + className}>
+                      <RefundRow data={data} filters="filter" />
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -325,7 +323,6 @@ class App extends Component {
 
 function propComparator(val, inverse) {
   return function(a, b) {
-
     if (val == "Name") {
       var x = a[val].toString().toLowerCase();
       var y = b[val].toString().toLowerCase();
@@ -339,11 +336,15 @@ function propComparator(val, inverse) {
     }
 
     if (val == "Refund or Ticket Validity Information Last Updated") {
-      var x = a[val] ? parseInt(moment(a[val].replace(/-/g, " ")).format("YYYYMMDD")) : 1;
-      var y = b[val] ? parseInt(moment(b[val].replace(/-/g, " ")).format("YYYYMMDD")) : 1;
+      var x = a[val]
+        ? parseInt(moment(a[val].replace(/-/g, " ")).format("YYYYMMDD"))
+        : 1;
+      var y = b[val]
+        ? parseInt(moment(b[val].replace(/-/g, " ")).format("YYYYMMDD"))
+        : 1;
 
       if (x < y) {
-        console.log("before")
+        console.log("before");
         return 1;
       }
       if (x > y) {

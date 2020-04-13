@@ -45,29 +45,33 @@
 .refundPage {
   font-family: SourceSansPro-Regular, Arial, Helvetica, sans-serif;
   width: 100%;
+  background: #ffffff;
+}
+
+.refundJumboContainer {
   background: #242039;
+  padding: 40px 0 100px;
+  box-shadow: 6px 10px 40px rgba(150, 150, 150, 0.3);
 }
 
 .refundJumbo {
   background: #242039;
   color: #ffffff;
-  max-width: 960px;
-  margin: 40px auto 40px;
+  max-width: 1170px;
+  margin: 0 auto;
   h1 {
     color: #ffffff;
     font-family: SourceSansPro-Bold, Arial, Helvetica, sans-serif;
-    text-align: center;
+    text-align: left;
     line-height: 1.1;
-    margin-bottom: 40px;
-    font-size: 3rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 20px;
+    max-width: 1170px;
+    font-size: 2.5rem;
   }
   p {
     color: #ffffff;
     font-family: SourceSansPro-Regular, Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
   }
   small {
     font-size: 14px;
@@ -75,8 +79,12 @@
 }
 
 .refundsTable {
-  background: #dddddd;
-  padding: 20px 0;
+  background: #f6f6f6;
+  padding: 30px 40px;
+  max-width: 1170px;
+  margin: -60px auto 60px auto;
+  box-shadow: 6px 10px 40px rgba(150, 150, 150, 0.3);
+  border-radius: 30px;
 
   .container {
     //overflow-y: scroll;
@@ -86,8 +94,9 @@
 
 .refundRow {
   background: #ffffff;
-  margin-bottom: 15px;
-  border-top: 2px solid #189bb0;
+  margin-bottom: 15px;  
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(200, 200, 200, 0.3), 0 6px 6px rgba(200, 200, 200, 0.3);
 
   a,
   a:focus {
@@ -133,10 +142,10 @@
 }
 
 .refundLabel {
-  font-family: SourceSansPro-Regular, arial, sans-serif;
+  font-family: SourceSansPro-Bold, arial, sans-serif;
   font-size: 0.8rem;
   text-transform: uppercase;
-  color: #9f9f9f;
+  color: #989898;
   padding-right: 7px;
 }
 
@@ -152,7 +161,7 @@
   text-align: center;
   text-transform: uppercase;
   max-width: 200px;
-  font-size: 14px
+  font-size: 14px;
 }
 
 .refundDownload {
@@ -194,6 +203,8 @@
   padding: 7px 10px;
   cursor: pointer;
   border-right: none;
+  font-size: 14px;
+  
 
   &.active {
     color: #ffffff;
@@ -210,6 +221,14 @@
     border-bottom-right-radius: 6px;
     border-right: 1px solid #189bb0;
   }
+}
+
+.refundResults {
+  min-height: 700px;
+  max-height: 900px;
+  overflow-y: auto;
+  align-content: flex-start;
+  
 }
 
 .hide {
