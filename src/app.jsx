@@ -130,6 +130,9 @@ class App extends Component {
                 website or contact the airline directly.
               </small>
             </p>
+            <div>
+              <a href="#agencyResources" className="ctaBtn">Agency Resources</a>
+            </div>
           </div>
         </div>
 
@@ -313,6 +316,51 @@ class App extends Component {
                     </div>
                   );
                 })}
+            </div>
+          </div>
+        </div>
+
+        <div id="agencyResources" className="agencyResources">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <h2>Agency Resources</h2>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-6">
+                <h3>Chargeback FAQs</h3>
+                <p>
+                  The industry is seeing a significant increase in service- and
+                  refund-related disputes compared to the typical fraud-related
+                  chargebacks. These FAQs serve as a resource for “Terms and
+                  Conditions” related disputes, which need to be managed
+                  differently.
+                </p>
+                <a
+                  target="_blank"
+                  href="https://www2.arccorp.com/globalassets/refunds/Chargeback-FAQs.pdf"
+                  className="ctaBtn"
+                >
+                  View FAQs
+                </a>
+              </div>
+              <div className="col-lg-6">
+                <h3>ARC Pay Dispute FAQs</h3>
+                <p>
+                  During this challenging time, agencies may be experiencing an
+                  influx of ARC Pay disputes. Here are the steps agencies need
+                  to take to proactively address and respond to ARC Pay
+                  transaction disputes and chargebacks.
+                </p>
+                <a
+                  target="_blank"
+                  href="https://www2.arccorp.com/globalassets/refunds/ARC-Pay-Dispute-FAQs.pdf"
+                  className="ctaBtn"
+                >
+                  View FAQs
+                </a>
+              </div>
             </div>
           </div>
         </div>
