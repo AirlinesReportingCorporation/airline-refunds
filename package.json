@@ -31,6 +31,7 @@
     "axios": "^0.19.2",
     "moment": "^2.24.0",
     "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.1",
     "xlsx": "^0.15.6"
   }
