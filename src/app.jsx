@@ -112,12 +112,13 @@ class App extends Component {
           <div className="refundJumbo">
             <h1>Airline Refund Information</h1>
             <p>
-              The following airlines have elected to manage ARC accredited
-              travel agency refunds directly and confirmed that decision with
-              ARC. Refunds for these airlines have been inhibited through their
-              GDSs and the ARC settlement system. To make it as easy as possible
-              for agencies to contact airlines regarding refunds, ARC is
-              providing relevant contact information* below.
+              As the travel industry contends with the challenges resulting from
+              COVID-19, ARC aims to make it as easy as possible for travel
+              agencies and airlines to manage high volumes of refunds. Use the
+              filters below to view the airlines that have elected to manage
+              refunds directly; those that have reinstated refunds in the GDS;
+              and those that have extended ticket validity beyond the standard
+              13 months.
             </p>
 
             <p>
@@ -125,13 +126,17 @@ class App extends Component {
                 <span style={{ fontWeight: "bold", color: "#189bb0" }}>
                   Please note:
                 </span>{" "}
-                This information is provided as a resource by ARC. For specific
-                airline policies and guidelines, please reference the airline’s
+                This page is provided as a resource and is updated with
+                information ARC receives from its participating airlines. It may
+                not be comprehensive, and it is subject to change. For specific
+                airline policies and guidelines, please reference the airline's
                 website or contact the airline directly.
               </small>
             </p>
             <div>
-              <a href="#agencyResources" className="ctaBtn">Agency Resources</a>
+              <a href="#agencyResources" className="ctaBtn">
+                Agency Resources
+              </a>
             </div>
           </div>
         </div>
@@ -316,6 +321,31 @@ class App extends Component {
                     </div>
                   );
                 })}
+            </div>
+          </div>
+        </div>
+
+        <div className="legaleseContainer">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <small>
+                  As a courtesy to the industry, ARC is providing these
+                  hyperlinks, which lead users to the airline's website that may
+                  include, for example, ticketing, booking, refunds, exchange,
+                  and schedule change rules. These hyperlinks are subject to
+                  change without notice. ARC uses reasonable care in compiling
+                  and presenting the hyperlink, but ARC gives no guarantee that
+                  the content behind the hyperlink is complete, accurate, error
+                  or virus free or up to date. Please note, the information
+                  contained behind the hyperlink is not the sole source of
+                  information from the airline and may not include all fare
+                  rules/ticketing rules. Therefore, ARC recommends travel agents
+                  take care to read all information published by the airline and
+                  all rules for the fares being booked, ticketed and/or
+                  refunded.
+                </small>
+              </div>
             </div>
           </div>
         </div>
