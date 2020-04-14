@@ -24,7 +24,7 @@ class RefundRow extends Component {
 
     var refundClass = "refundRegular";
 
-    if (data["Refunds"].indexOf("Managing Directly") > -1) {
+    if (data["Refunds"].indexOf("Managing Directly") > -1 || data["Instructions 1"] || data["Instructions 2"] || data["Instructions 3"]) {
       refundClass = "refundDownload";
     }
 

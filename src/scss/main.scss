@@ -1,3 +1,19 @@
+@import '../../node_modules/simplebar/dist/simplebar.min.css';
+
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: .9;
+}
+
+.simplebar-scrollbar::before {
+  background: #189bb0;
+}
+
+.simplebar-track.simplebar-vertical {
+  background: #dddddd;
+  background: rgba(221,221,221,.7);
+  border-radius: 7px;
+}
+
 .data-panel {
   height: auto !important;
   margin-top: 0;
@@ -101,7 +117,7 @@
 
 .refundRow {
   background: #ffffff;
-  margin-bottom: 15px;  
+  margin: 0 25px 15px 0;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(200, 200, 200, 0.3), 0 6px 6px rgba(200, 200, 200, 0.3);
 
@@ -233,8 +249,10 @@
 .refundResults {
   min-height: 700px;
   max-height: 850px;
+  overflow-x: hidden;
   overflow-y: auto;
   align-content: flex-start;
+
   
 }
 

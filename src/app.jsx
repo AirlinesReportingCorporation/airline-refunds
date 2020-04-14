@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import * as moment from "moment";
 import axios from "axios";
 import XLSX from "xlsx";
+import SimpleBar from "simplebar-react";
 
 import RefundRow from "./RefundRow.jsx";
 
@@ -110,7 +111,7 @@ class App extends Component {
       <div className="refundPage">
         <div className="refundJumboContainer">
           <div className="refundJumbo">
-            <h1>Airline Refund Information</h1>
+            <h1>Airline Refund and Exchange Information</h1>
             <p>
               As the travel industry contends with the challenges resulting from
               COVID-19, ARC aims to make it as easy as possible for travel
@@ -278,50 +279,54 @@ class App extends Component {
                 </div>
               </div>
             </div>
-            <div className="row refundResults">
-              {this.state.filter &&
-                this.state.filterTicket &&
-                this.state.jsonData.map((data, i) => {
-                  var comboTruth = false;
-                  var refundShow = false;
-                  var ticketShow = false;
+            <SimpleBar className="refundResults" autoHide={false} forceVisible="x">
+              <div className="row no-gutters">
+                {this.state.filter &&
+                  this.state.filterTicket &&
+                  this.state.jsonData.map((data, i) => {
+                    var comboTruth = false;
+                    var refundShow = false;
+                    var ticketShow = false;
 
-                  var className = "hide";
+                    var className = "hide";
 
-                  var filter = this.state.filter;
-                  var filterTicket = this.state.filterTicket;
+                    var filter = this.state.filter;
+                    var filterTicket = this.state.filterTicket;
 
-                  //console.log(filterTicket);
+                    //console.log(filterTicket);
 
-                  if (filter == "ALL") {
-                    refundShow = true;
-                  } else if (data["Refunds"].indexOf(this.state.filter) > -1) {
-                    refundShow = true;
-                  }
+                    if (filter == "ALL") {
+                      refundShow = true;
+                    } else if (
+                      data["Refunds"].indexOf(this.state.filter) > -1
+                    ) {
+                      refundShow = true;
+                    }
 
-                  if (filterTicket == "ALL") {
-                    ticketShow = true;
-                  } else if (
-                    filterTicket == "13 Months" &&
-                    data["Ticket Validity"] == "13 Months"
-                  ) {
-                    ticketShow = true;
-                  } else if (
-                    filterTicket == "> 13 Months" &&
-                    data["Ticket Validity"] != "13 Months"
-                  ) {
-                    ticketShow = true;
-                  }
+                    if (filterTicket == "ALL") {
+                      ticketShow = true;
+                    } else if (
+                      filterTicket == "13 Months" &&
+                      data["Ticket Validity"] == "13 Months"
+                    ) {
+                      ticketShow = true;
+                    } else if (
+                      filterTicket == "> 13 Months" &&
+                      data["Ticket Validity"] != "13 Months"
+                    ) {
+                      ticketShow = true;
+                    }
 
-                  className = refundShow && ticketShow ? "show" : "hide";
+                    className = refundShow && ticketShow ? "show" : "hide";
 
-                  return (
-                    <div key={i} className={"col-lg-12 " + className}>
-                      <RefundRow data={data} filters="filter" />
-                    </div>
-                  );
-                })}
-            </div>
+                    return (
+                      <div key={i} className={"col-lg-12 " + className}>
+                        <RefundRow data={data} filters="filter" />
+                      </div>
+                    );
+                  })}
+              </div>
+            </SimpleBar>
           </div>
         </div>
 
@@ -369,7 +374,7 @@ class App extends Component {
                 </p>
                 <a
                   target="_blank"
-                  href="https://www2.arccorp.com/globalassets/refunds/Chargeback-FAQs.pdf"
+                  href="https://www2.arccorp.com/globalassets/refunds/covid-19-chargeback-dispute-management-faqs.pdf"
                   className="ctaBtn"
                 >
                   View FAQs
@@ -385,7 +390,7 @@ class App extends Component {
                 </p>
                 <a
                   target="_blank"
-                  href="https://www2.arccorp.com/globalassets/refunds/ARC-Pay-Dispute-FAQs.pdf"
+                  href="https://www2.arccorp.com/globalassets/refunds/arc-pay-dispute-information-and-faqs.pdf"
                   className="ctaBtn"
                 >
                   View FAQs
