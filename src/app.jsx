@@ -279,7 +279,11 @@ class App extends Component {
                 </div>
               </div>
             </div>
-            <SimpleBar className="refundResults" autoHide={false} forceVisible="x">
+            <SimpleBar
+              className="refundResults"
+              autoHide={false}
+              forceVisible="x"
+            >
               <div className="row no-gutters">
                 {this.state.filter &&
                   this.state.filterTicket &&
@@ -391,6 +395,24 @@ class App extends Component {
                 <a
                   target="_blank"
                   href="https://www2.arccorp.com/globalassets/refunds/arc-pay-dispute-information-and-faqs.pdf"
+                  className="ctaBtn"
+                >
+                  View FAQs
+                </a>
+              </div>
+            </div>
+            <div className="row" style={{marginTop: "30px"}}>
+              <div className="col-lg-6">
+                <h3>Cash Settlement FAQs</h3>
+                <p>
+                  Due to the state of the global travel community, travel
+                  agencies are facing a level of refunds that is outpacing new
+                  sales. These FAQs detail the changes ARC has made to ensure
+                  the integrity of its core settlement functions.
+                </p>
+                <a
+                  target="_blank"
+                  href="https://www2.arccorp.com/globalassets/email/ARCCashSettlementFAQs-Agencies.pdf"
                   className="ctaBtn"
                 >
                   View FAQs

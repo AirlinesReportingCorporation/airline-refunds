@@ -277,7 +277,13 @@
 
   h2 {
     margin-bottom: 40px;
-    text-align: center;
+    text-align: left;
     font-family: SourceSansPro-Bold, Arial, Helvetica, sans-serif;
+  }
+
+  a.ctaBtn {
+    margin: 0;
+    padding: 10px;
+    min-height: auto;
   }
 }
