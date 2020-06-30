@@ -418,6 +418,19 @@ class App extends Component {
                   View FAQs
                 </a>
               </div>
+              <div className="col-lg-6">
+                <h3>Recommendations for Managing Airline Schedule Changes</h3>
+                <p>
+                These new guidelines from ARC’s Debit Memo Working Group aim to help airlines, travel agencies and GDSs manage airline schedule changes more effectively. 
+                </p>
+                <a
+                  target="_blank"
+                  href="https://www2.arccorp.com/globalassets/support--training/debit-memo-working-group/recommendations-for-managing-airline-schedule-changes.pdf"
+                  className="ctaBtn"
+                >
+                  Download PDF
+                </a>
+              </div>
             </div>
           </div>
         </div>
