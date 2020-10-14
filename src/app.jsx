@@ -98,6 +98,8 @@ class App extends Component {
       e.setState({ refundList: refundTypes });
       e.setState({ jsonHeaders: jsonHeadersTemp });
 
+      e.setSort("asc");
+
       //console.log(e.state.jsonHeaders);
       //console.log(e.state.jsonData);
     });
