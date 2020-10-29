@@ -414,7 +414,7 @@ class App extends Component {
                 </p>
                 <a
                   target="_blank"
-                  href="https://www2.arccorp.com/globalassets/email/ARCCashSettlementFAQs-Agencies.pdf"
+                  href="https://www2.arccorp.com/globalassets/email/ARC-Cash-Settlement-Travel-Agency-FAQs-Effective-PED-2020-11-08.pdf"
                   className="ctaBtn"
                 >
                   View FAQs
