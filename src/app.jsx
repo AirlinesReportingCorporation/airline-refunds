@@ -120,8 +120,16 @@ class App extends Component {
               agencies and airlines to manage high volumes of refunds. Use the
               filters below to view the airlines that have elected to manage
               refunds directly; those that have reinstated refunds in the GDS;
-              and those that have extended ticket validity beyond the standard
-              13 months.
+              and those that have extended ARC’s Processing Validity beyond the
+              standard 13 months.
+            </p>
+            <p>
+              The Processing Validity column refers to the technical period of
+              time that refunds and exchanges can be processed through ARC’s
+              settlement system (IAR). Before processing any refund or exchange,
+              Agents should review the ticket’s fare rules, as well as the
+              applicability of any ticket validity extension that may have been
+              offered by the airline.
             </p>
 
             <p>
@@ -132,7 +140,7 @@ class App extends Component {
                 This page is provided as a resource and is updated with
                 information ARC receives from its participating airlines. It may
                 not be comprehensive, and it is subject to change. For specific
-                airline policies and guidelines, please reference the airline's
+                airline policies and guidelines, please reference the airline’s
                 website or contact the airline directly.
               </small>
             </p>
@@ -207,7 +215,7 @@ class App extends Component {
               <div className="col-lg-3">
                 <div className="refundFilters">
                   <div className="refundFiltersContainer">
-                    <div className="refundFiltersLabel">Ticket Validity</div>
+                    <div className="refundFiltersLabel">Process Validity</div>
                     <div className="optionGroup">
                       <div
                         onClick={this.setTicketFilter.bind(this, "ALL")}
@@ -403,7 +411,7 @@ class App extends Component {
                 </a>
               </div>
             </div>
-            <div className="row" style={{marginTop: "30px"}}>
+            <div className="row" style={{ marginTop: "30px" }}>
               <div className="col-lg-6">
                 <h3>Cash Settlement FAQs</h3>
                 <p>
@@ -423,7 +431,9 @@ class App extends Component {
               <div className="col-lg-6">
                 <h3>Recommendations for Managing Airline Schedule Changes</h3>
                 <p>
-                These new guidelines from ARC’s Debit Memo Working Group aim to help airlines, travel agencies and GDSs manage airline schedule changes more effectively. 
+                  These new guidelines from ARC’s Debit Memo Working Group aim
+                  to help airlines, travel agencies and GDSs manage airline
+                  schedule changes more effectively.
                 </p>
                 <a
                   target="_blank"
