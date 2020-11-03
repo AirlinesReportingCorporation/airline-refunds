@@ -57,117 +57,20 @@
     <div class="navcontainer signedOut" data-username="">
       <!-- supernav start -->
       <div class="supernav" v-on:mouseleave="navPanelReset()">
-        <!-- start topnav -->
-        <div
-          class="supernav-topnav"
-          v-click-outside="hideLogin"
-          v-on:mouseenter="navPanelReset()"
-        >
-          <div class="supernav-topnav-inner">
-            <form
-              class="topnav-search"
-              action="/search/"
-              method="get"
-              v-show="showSearch"
-              v-cloak
+        <!-- start alert -->
+        <div class="supernav-alert">
+          <div class="supernav-alert-inner">
+            <a target="_blank" href="https://on.bcg.com/travelrecovery"
+              >Track the travel industry recovery from the COVID-19 pandemic
+              with the <span>Travel Recovery Insights Portal</span>.</a
             >
-              <input
-                type="text"
-                name="q"
-                id="topnav-search-input"
-                ref="search"
-                v-cloak
-              />
-              <div class="icon-close" v-on:click="toggleSearch()" v-cloak></div>
-              <button
-                type="submit"
-                class="icon-search"
-                id="topnav-search-button"
-                value="submit"
-              ></button>
-            </form>
-            <a
-              href="#"
-              class="topnav-link show-search icon-search"
-              v-on:click="toggleSearch()"
-              v-show="!showSearch"
-            ></a>
-            <a href="/about-us/contact-us/" class="topnav-link">Contact Us</a>
-            <a
-              href="#"
-              class="topnav-link topnav-myarc"
-              v-on:click="showPopup('loginActive')"
-              >My ARC</a
-            >
-            <div class="supernav-login" v-show="loginActive" v-cloak>
-              <div class="supernav-login-inner">
-                <div class="supernav-loggedin">
-                  You are currently logged in as
-                  <div class="supernav-myarc-username"></div>
-                  <a
-                    target="_blank"
-                    href="https://intgmyarc.arccorp.com/"
-                    class="ctaBtn"
-                    >My ARC</a
-                  >
-                  <a
-                    target="_blank"
-                    href="https://intgmyarc.arccorp.com/PortalApp/ARCGateway.portal?_nfpb=true&_st=&_pageLabel=ARC_Login&_name=logout&_nfls=false"
-                    class="ctaBtn"
-                    >Log Out</a
-                  >
-                </div>
-                <form
-                  id="frmMyARCLogin"
-                  name="frmMyARCLogin"
-                  method="POST"
-                  action="https://intgmyarc.arccorp.com/PortalApp/PreLogin.portal"
-                >
-                  <input
-                    type="text"
-                    id="myarcusername"
-                    name="user"
-                    placeholder="Username"
-                  />
-
-                  <input
-                    type="password"
-                    id="myarcpassword"
-                    name="password"
-                    placeholder="Password"
-                  />
-                  <div class="supernav-submit">
-                    <button
-                      title="submit form"
-                      class="ctaBtn ctaBtn--main"
-                      type="submit"
-                    >
-                      Log In
-                    </button>
-                  </div>
-                  <br />
-                  <a
-                    href="https://myarc.arccorp.com/PortalApp/ArcPublicPortal.portal?_nfpb=true&_pageLabel=MyARC_ForgotUserName&_nfls=false"
-                    target="_blank"
-                    class="forgotUsername"
-                    >Forgot Username?</a
-                  >
-                  <a
-                    href="https://myarc.arccorp.com/PortalApp/ArcPublicPortal.portal?_nfpb=true&_pageLabel=ARC_ForgotPassword&_nfls=false"
-                    target="_blank"
-                    class="forgotUsername"
-                    >Forgot Password?</a
-                  >
-                </form>
-              </div>
-            </div>
           </div>
         </div>
-        <!-- end top nav -->
+        <!-- end alert -->
 
         <!-- start menu nav -->
         <div style="position: relative; z-index: 104; background: #ffffff;">
-          <div class="supernav-inner">
+          <div class="supernav-inner d-flex align-items-center">
             <div class="supernav-mobile-icon">
               <div class="hamburger icon-menu"></div>
             </div>
@@ -183,18 +86,18 @@
                   <a
                     href="#"
                     class="supernav-menu-item"
-                    v-on:click="navPanelSwitch('products')"
+                    v-on:click="navPanelSwitch('participation')"
                   >
-                    Products
+                    Participation
                   </a>
                 </div>
                 <div class="col">
                   <a
                     href="#"
                     class="supernav-menu-item"
-                    v-on:click="navPanelSwitch('participation')"
+                    v-on:click="navPanelSwitch('products')"
                   >
-                    Participation
+                    Products
                   </a>
                 </div>
                 <div class="col">
@@ -242,21 +145,22 @@
                 <a
                   href="#"
                   class="supernav-menu-item"
-                  v-bind:class="{ active : primaryNavCheck('products') }"
-                  v-on:mouseover="navPanelSwitch('products')"
-                  v-on:click="navPanelSwitch('products')"
-                >
-                  Products
-                </a>
-                <a
-                  href="#"
-                  class="supernav-menu-item"
                   v-bind:class="{ active : primaryNavCheck('participation') }"
                   v-on:mouseover="navPanelSwitch('participation')"
                   v-on:click="navPanelSwitch('participation')"
                 >
                   Participation
                 </a>
+                <a
+                  href="#"
+                  class="supernav-menu-item"
+                  v-bind:class="{ active : primaryNavCheck('products') }"
+                  v-on:mouseover="navPanelSwitch('products')"
+                  v-on:click="navPanelSwitch('products')"
+                >
+                  Products
+                </a>
+
                 <a
                   href="#"
                   class="supernav-menu-item"
@@ -295,6 +199,125 @@
                 </a>
               </div>
             </div>
+            <div v-cloak class="supernav-utility">
+              <!-- start topnav -->
+              <div
+                class="supernav-topnav"
+                v-click-outside="hideLogin"
+                v-on:mouseenter="navPanelReset()"
+              >
+                <div class="supernav-topnav-inner">
+                  <form
+                    class="topnav-search"
+                    action="/search/"
+                    method="get"
+                    v-show="showSearch"
+                    v-cloak
+                  >
+                    <input
+                      title="topnavsearch"
+                      type="text"
+                      name="q"
+                      id="topnav-search-input"
+                      ref="search"
+                      placeholder="Search"
+                      v-cloak
+                    />
+                    <div
+                      class="icon-close"
+                      v-on:click="toggleSearch()"
+                      v-cloak
+                    ></div>
+                    <button
+                      type="submit"
+                      class="icon-search"
+                      id="topnav-search-button"
+                      value="submit"
+                    ></button>
+                  </form>
+                  <a
+                    href="#"
+                    class="topnav-link show-search icon-search"
+                    v-on:click="toggleSearch()"
+                    v-show="!showSearch"
+                  ></a>
+                  <a href="/about-us/contact-us/" class="topnav-link"
+                    >Contact Us</a
+                  >
+                  <a
+                    href="#"
+                    class="topnav-link topnav-myarc"
+                    v-on:click="showPopup('loginActive')"
+                    >My ARC</a
+                  >
+                  <div class="supernav-login" v-show="loginActive" v-cloak>
+                    <div class="supernav-login-inner">
+                      <div class="supernav-loggedin">
+                        You are currently logged in as
+                        <div class="supernav-myarc-username"></div>
+                        <a
+                          target="_blank"
+                          href="https://myarc.arccorp.com/"
+                          class="ctaBtn"
+                          >My ARC</a
+                        >
+                        <a
+                          target="_blank"
+                          href="https://myarc.arccorp.com/PortalApp/ARCGateway.portal?_nfpb=true&_st=&_pageLabel=ARC_Login&_name=logout&_nfls=false"
+                          class="ctaBtn"
+                          >Log Out</a
+                        >
+                      </div>
+                      <form
+                        id="frmMyARCLogin"
+                        name="frmMyARCLogin"
+                        method="POST"
+                        action="https://myarc.arccorp.com/PortalApp/PreLogin.portal"
+                      >
+                        <input
+                          type="text"
+                          id="myarcusername"
+                          name="user"
+                          placeholder="Username"
+                          title="username"
+                        />
+
+                        <input
+                          type="password"
+                          id="myarcpassword"
+                          name="password"
+                          placeholder="Password"
+                          title="password"
+                        />
+                        <div class="supernav-submit">
+                          <button
+                            title="submit form"
+                            class="ctaBtn ctaBtn--main"
+                            type="submit"
+                          >
+                            Log In
+                          </button>
+                        </div>
+                        <br />
+                        <a
+                          href="https://myarc.arccorp.com/PortalApp/ArcPublicPortal.portal?_nfpb=true&_pageLabel=MyARC_ForgotUserName&_nfls=false"
+                          target="_blank"
+                          class="forgotUsername"
+                          >Forgot Username?</a
+                        >
+                        <a
+                          href="https://myarc.arccorp.com/PortalApp/ArcPublicPortal.portal?_nfpb=true&_pageLabel=ARC_ForgotPassword&_nfls=false"
+                          target="_blank"
+                          class="forgotUsername"
+                          >Forgot Password?</a
+                        >
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end top nav -->
+            </div>
           </div>
         </div>
         <!-- end menu nav -->
@@ -319,7 +342,7 @@
           <div class="supernav-sub-inner row">
             <div class="supernav-sub-main col-md-3">
               <a
-                href="/products-participation/products/?link=agencies&utm_source=Global_Navigation"
+                href="https://www2.arccorp.com/products-participation/travel-agencies/?utm_source=Global_Navigation"
                 class="supernav-header"
               >
                 Travel Agencies
@@ -340,9 +363,9 @@
                 >Memo Analyzer for Agencies</a
               >
               <a
-                href="/products-participation/products/memo-manager/?utm_source=Global_Navigation"
+                href="/products-participation/products/arc-custom-reports/?utm_source=Global_Navigation"
                 class="supernav-sub-link"
-                >Memo Manager</a
+                >Custom Reports</a
               >
 
               <a
@@ -353,7 +376,7 @@
             </div>
             <div class="supernav-sub-main col-md-3">
               <a
-                href="/products-participation/products/?link=airlines&utm_source=Global_Navigation"
+                href="https://www2.arccorp.com/products-participation/airlines/?utm_source=Global_Navigation"
                 class="supernav-header"
                 >Airlines</a
               >
@@ -388,36 +411,14 @@
             </div>
             <div class="supernav-sub-main col-md-3">
               <a
-                href="/products-participation/products/?link=corporations&utm_source=Global_Navigation"
-                class="supernav-header"
-                >Corporate Travel Programs</a
-              >
-              <a
-                href="/products-participation/products/air-program-monitor/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Air Program Monitor</a
-              >
-              <a
-                href="/products-participation/products/corporate-bi/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Corporate BI</a
-              >
-              <a
-                href="/products-participation/products/transaction-history-file/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Transaction History File</a
-              >
-              <a
-                href="/products-participation/products/?link=corporations&utm_source=Global_Navigation"
-                class="supernav-sub-link supernav-viewall"
-                >View All</a
-              >
-            </div>
-            <div class="supernav-sub-main col-md-3">
-              <a
-                href="/products-participation/products/?link=other&utm_source=Global_Navigation"
+                href="https://www2.arccorp.com/products-participation/other-data-users/?utm_source=Global_Navigation"
                 class="supernav-header"
                 >Other Data Users</a
+              >
+              <a
+                href="/products-participation/products/arc-travel-demand/?utm_source=Global_Navigation&utm_campaign=Other_Data_Users"
+                class="supernav-sub-link"
+                >ARC Travel Demand</a
               >
               <a
                 href="/products-participation/products/arc-custom-reports/?utm_source=Global_Navigation&utm_campaign=Other_Data_Users"
@@ -451,7 +452,7 @@
           <div class="supernav-sub-inner row">
             <div class="supernav-sub-main col-md-3">
               <div class="supernav-header supernav-header-nonlink">
-                Distribution
+                Air Travel Retailing
               </div>
               <a
                 href="/products-participation/distribution/?utm_source=Global_Navigation"
@@ -460,24 +461,14 @@
                 >New Distribution Capability (NDC)</a
               >
               <a
+                href="/about-us/arc-omnichannel-retailing/?utm_source=Global_Navigation"
+                class="supernav-header"
+                >Omnichannel Retailing</a
+              >
+              <a
                 href="/about-us/settlement-services/?utm_source=Global_Navigation"
                 class="supernav-header"
                 >Settlement</a
-              >
-              <a
-                href="/products-participation/travel-agencies/agency-participation/participation-products/DRS/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Document Retrieval Service (DRS)</a
-              >
-              <a
-                href="/products-participation/travel-agencies/agency-participation/participation-products/IAR/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Interactive Agent Reporting (IAR)</a
-              >
-              <a
-                href="/products-participation/travel-agencies/agency-participation/participation-products/ISS/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Internet Sales Summary (ISS)</a
               >
             </div>
             <div class="supernav-sub-main col-3">
@@ -485,12 +476,17 @@
                 class="supernav-header supernav-header-nonlink"
                 style="margin-bottom:15px;"
               >
-                Payment
+                Payment and Fraud Services
               </div>
               <a
-                href="/products-participation/products/travel-agency-service-fee/?utm_source=Global_Navigation"
+                href="/products-participation/products/arc-pay/?utm_source=Global_Navigation"
                 class="supernav-sub-link"
-                >Travel Agency Service Fee (TASF)</a
+                >ARC Pay</a
+              >
+              <a
+                href="/support-training/fraud-prevention/arc-risk-check/?utm_source=Global_Navigation"
+                class="supernav-sub-link"
+                >ARC Risk Check</a
               >
             </div>
             <div class="supernav-sub-main col-3">
@@ -531,20 +527,6 @@
           </div>
 
           <!-- bottom featured product section-->
-          <!--
-        <div style="background: #ece9e7; margin-top: 30px; padding: 30px 0;">
-        <div class="supernav-sub-inner row">
-          <div class="supernav-sub-main col-md-3">
-            img
-          </div>
-          <div class="supernav-sub-main col-md-9">
-            <a href="/articles-trends/sales-statistics/" class="supernav-header">
-              Case Studies
-            </a>
-          </div>
-        </div>
-      </div>
-      -->
         </div>
 
         <!-- participation sub nav -->
@@ -657,10 +639,10 @@
                       class="supernav-participation-stats"
                       style="color: #333333;"
                     >
-                      Emerging Models <br />for NDC
+                      Omnichannel Retailing
                     </div>
                     <a
-                      href="/articles-trends/the-latest/navigating-one-to-one-relationships-in-a-many-to-many-airline-distribution-world/?utm_source=Global_Navigation"
+                      href="/about-us/arc-omnichannel-retailing/?utm_source=Navigation_Feature"
                       class="supernav-header"
                       >Learn More</a
                     >
@@ -668,18 +650,6 @@
                       src="https://www2.arccorp.com/globalassets/homepage/redesign/participation_feature4.png"
                       alt="participation"
                     />
-                    <!--
-                <div style="padding-left:15px;">
-                  <div class="supernav-participation-title">
-                    Preparing for Takeoff 2016
-                  </div>
-                  <div class="supernav-participation-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </div>
-                  <div class="supernav-header">
-                    Call to Action
-                  </div>
-                </div>-->
                   </div>
                 </div>
               </div>
@@ -687,7 +657,7 @@
           </div>
         </div>
 
-        <!-- community sub nav -->
+        <!-- communication sub nav -->
 
         <div
           class="supernav-sub animated"
@@ -695,129 +665,134 @@
           v-show="primaryNav === 'community'"
           v-cloak
         >
-          <div class="supernav-sub-inner row">
-            <div class="supernav-sub-main col-md-3">
-              <a
-                href="/articles-trends/the-latest/?utm_source=Global_Navigation"
-                class="supernav-header"
-                >The Latest</a
-              >
-              <a
-                href="/about-us/newsroom/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Newsroom</a
-              >
-              <a
-                href="/articles-trends/the-latest/?link=researchThoughtLeadership&utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Research & Thought Leadership</a
-              >
-              <a
-                href="/articles-trends/the-latest/?link=webinars&utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >On-Demand Webinars</a
-              >
-              <a
-                href="/articles-trends/the-latest/?link=caseStudies&utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Case Studies</a
-              >
-              <a
-                href="/products-participation/customer-success-stories/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Customer Success Stories</a
-              >
+          <div class="row no-gutters" style="max-width: 100%">
+            <div class="col-6">
+              <div class="supernav-sub-container supernav-sub-container-right">
+                <div class="row justify-content-end">
+                  <div class="supernav-sub-main col-md-6">
+                    <a
+                      href="/articles-trends/the-latest/?utm_source=Global_Navigation"
+                      class="supernav-header"
+                      >The Latest</a
+                    >
+                    <a
+                      href="/about-us/newsroom/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Newsroom</a
+                    >
+                    <a
+                      href="/articles-trends/blog/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Blog</a
+                    >
+                    <a
+                      href="/about-us/newsroom/media-kit/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Media Kit</a
+                    >
+                    <a
+                      href="/articles-trends/on-demand-webinars/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >On-Demand Webinars</a
+                    >
+                    <a
+                      href="/articles-trends/case-studies/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Case Studies</a
+                    >
+                    <a
+                      href="/products-participation/customer-success-stories/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Customer Success Stories</a
+                    >
 
-              <a
-                href="/about-us/events/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Events</a
-              >
+                    <a
+                      href="/about-us/events/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Events</a
+                    >
+                  </div>
+                  <div class="supernav-sub-main col-md-6">
+                    <a
+                      href="/articles-trends/industry-communications/?utm_source=Global_Navigation"
+                      class="supernav-header"
+                    >
+                      Industry Communications
+                    </a>
+                    <a
+                      href="/articles-trends/arc-newsletter/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >ARC Newsletter</a
+                    >
+                    <a
+                      href="/articles-trends/agency-communications/travel-agent-communications/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Travel Agent Communications (TAC)</a
+                    >
+                    <a
+                      href="/support-training/fraud-prevention/fraud-alerts/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Fraud Alerts</a
+                    >
+                    <a
+                      href="/articles-trends/agency-communications/airline-participation-announcements/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Airline Participation Announcements</a
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="supernav-sub-main col-md-3">
-              <a
-                href="/articles-trends/agency-communications/?utm_source=Global_Navigation"
-                class="supernav-header"
+            <div class="col-6" style="background: #f6f6f6;">
+              <div
+                class="supernav-sub-container supernav-sub-container-left"
+                style="height:100%"
               >
-                Agency Communications
-              </a>
-              <a
-                href="/articles-trends/agency-communications/agent-newsletter/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Agent Newsletter</a
-              >
-              <a
-                href="/articles-trends/agency-communications/airline-participation-announcements/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Airline Participation Announcements</a
-              >
-              <a
-                href="/support-training/fraud-prevention/fraud-alerts/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Fraud Alerts</a
-              >
-
-              <a
-                href="/articles-trends/agency-communications/travel-agent-communications/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Travel Agent Communications (TAC)</a
-              >
-            </div>
-            <div class="supernav-sub-main col-md-3">
-              <a
-                href="/articles-trends/airline-communications/?utm_source=Global_Navigation"
-                class="supernav-header"
-              >
-                Airline Communications
-              </a>
-              <a
-                href="/articles-trends/airline-communications/airline-newsletter/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Airline Newsletter</a
-              >
-              <a
-                href="/articles-trends/agency-communications/airline-participation-announcements/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Airline Participation Announcements</a
-              >
-              <a
-                href="/support-training/fraud-prevention/fraud-alerts/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Fraud Alerts</a
-              >
-            </div>
-            <div class="supernav-sub-main col-md-3">
-              <a
-                href="/support-training/working-groups/?utm_source=Global_Navigation"
-                class="supernav-header"
-                >Working Groups</a
-              >
-              <a
-                href="/support-training/working-groups/debit-memo-working-group-dmwg/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >Debit Memo Working Group (DMWG)</a
-              >
-              <a
-                href="/support-training/working-groups/arc-payments-forum/?utm_source=Global_Navigation"
-                class="supernav-sub-link"
-                >ARC Payments Forum</a
-              >
+                <div class="row justify-content-end" style="height:100%">
+                  <div
+                    class="supernav-sub-main col-md-6"
+                    style="background: #ffffff;"
+                  >
+                    <a
+                      href="/support-training/working-groups/?utm_source=Global_Navigation"
+                      class="supernav-header"
+                      >Working Groups</a
+                    >
+                    <a
+                      href="/support-training/working-groups/debit-memo-working-group-dmwg/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Debit Memo Working Group (DMWG)</a
+                    >
+                    <a
+                      href="/support-training/working-groups/arc-payments-forum/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >ARC Payments Forum</a
+                    >
+                  </div>
+                  <div
+                    class="supernav-sub-main col-md-6"
+                    style="background: #f6f6f6; text-align:center;"
+                  >
+                    <div
+                      class="supernav-participation-stats"
+                      style="color: #333333;"
+                    >
+                      Customer Success Stories
+                    </div>
+                    <a
+                      href="/products-participation/customer-success-stories/?utm_source=Navigation_Feature"
+                      class="supernav-header"
+                      >Learn More</a
+                    >
+                    <img
+                      src="https://www2.arccorp.com/globalassets/homepage/redesign/communication_feature.png"
+                      alt="Customer Success Stories"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!--
-        <div style="background: #ece9e7;">
-          <div class="supernav-sub-inner row">
-            <div class="supernav-sub-main col-md-3">
-              img
-            </div>
-            <div class="supernav-sub-main col-md-9">
-              <a href="/articles-trends/sales-statistics/" class="supernav-header">
-                Case Studies
-              </a>
-            </div>
-          </div>
-        </div> -->
         </div>
 
         <!-- training sub nav -->
@@ -891,7 +866,7 @@
                   <div class="supernav-sub-main col-md-6">
                     <div class="supernav-webinar">
                       <a
-                        href="/articles-trends/the-latest/?link=webinars&utm_source=Global_Navigation&utm_campaign=Feature"
+                        href="/articles-trends/on-demand-webinars?utm_source=Navigation_Feature"
                         class="supernav-header no-arrow"
                         >On-Demand Webinars</a
                       >
@@ -900,7 +875,7 @@
                       </div>
 
                       <a
-                        href="/articles-trends/the-latest/?link=webinars&utm_source=Global_Navigation&utm_campaign=Feature"
+                        href="/articles-trends/on-demand-webinars?utm_source=Navigation_Feature"
                         class="supernav-header"
                       >
                         View All
@@ -937,25 +912,36 @@
                     </div>
                     <a
                       target="_blank"
-                      href="https://www2.arccorp.com/globalassets/forms/agencyfees_2018.pdf/?utm_source=Global_Navigation"
+                      href="/globalassets/forms/agencyfees_2020.pdf/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
-                      >2018 ARC Agency Fees</a
+                      >2020 ARC Agency Fees</a
                     >
                     <a
-                      href="/support-training/holiday-schedule/?utm_source=Global_Navigation"
+                      href="/support-training/holiday-schedule-2020/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
-                      >2018 Holiday Schedule</a
+                      >2020 Holiday Schedule</a
+                    >
+                    <a
+                      href="/support-training/2021-holiday-schedule/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >2021 Holiday Schedule</a
                     >
                     <a
                       href="/support-training/airlines/processing-schedule/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
-                      >2018 Processing Schedule</a
+                      >2020 Processing Schedule</a
+                    >
+                    <a
+                      href="/support-training/airlines/2021-processing-schedule/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >2021 Processing Schedule</a
                     >
                     <a
                       href="/support-training/airlines/airline-ticket-matrix/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
                       >Airline Ticket Matrix</a
                     >
+
                     <a
                       href="/support-training/airlines/airline-ancillary-matrix/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
@@ -974,7 +960,7 @@
                     >
                     <a
                       target="_blank"
-                      href="https://www2.arccorp.com/globalassets/forms/exception_transactions.pdf/?utm_source=Global_Navigation"
+                      href="/globalassets/forms/exception_transactions.pdf/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
                       >Exception Transactions</a
                     >
@@ -989,7 +975,11 @@
                     <div class="supernav-header supernav-header-nonlink">
                       Agency Resources
                     </div>
-
+                    <a
+                      href="/refunds/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Airline Refund and Exchange Information
+                    </a>
                     <a
                       href="/support-training/agent-reporting-agreement/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
@@ -999,6 +989,12 @@
                       href="/support-training/industry-agents-handbook/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
                       >Industry Agents' Handbook (IAH)</a
+                    >
+                    <a
+                      target="_blank"
+                      href="/support-training/airlines/payment-acceptance/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >Payment Acceptance Chart</a
                     >
                     <a
                       href="/support-training/forms-catalog-accreditation/?utm_source=Global_Navigation"
@@ -1015,6 +1011,12 @@
                       class="supernav-sub-link"
                       >GDS Contact Information</a
                     >
+                    <a
+                      href="/globalassets/support--training/agency-support/chargeback-best-practices.pdf/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      target="_blank"
+                      >Chargeback Best Practices</a
+                    >
                   </div>
                 </div>
               </div>
@@ -1030,12 +1032,6 @@
                       Airline Resources
                     </div>
 
-                    <a
-                      target="_blank"
-                      href="https://www2.arccorp.com/globalassets/forms/ops/creditcard-acceptance-chart.pdf/?utm_source=Global_Navigation"
-                      class="supernav-sub-link"
-                      >Credit Card Acceptance Chart</a
-                    >
                     <a
                       href="/support-training/airlines/information-on-agency-accreditation-for-airlines/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
@@ -1057,13 +1053,23 @@
                       class="supernav-sub-link"
                       >Participating Airlines</a
                     >
+                    <a
+                      href="https://arcsign.na1.echosign.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCE6LyrFDQdByivyHHE1eTmEOZtFPDRbT1fRMpQPWgIZn-CKp_z1sWfG-Koef8Ns48*"
+                      class="supernav-sub-link"
+                      target="_blank"
+                      >Re-designation form for Airlines</a
+                    >
                     <br /><br /><br />
                   </div>
                   <div class="supernav-sub-main col-md-6">
                     <div class="supernav-header supernav-header-nonlink">
                       Fraud Prevention Resources
                     </div>
-
+                    <a
+                      href="/support-training/fraud-prevention/arc-risk-check/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      >ARC Risk Check</a
+                    >
                     <a
                       href="/support-training/fraud-prevention/best-practices/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
@@ -1085,6 +1091,11 @@
                       >Fraud Prevention</a
                     >
                     <a
+                      href="/support-training/fraud-prevention/fraud-on-demand-webinars/"
+                      class="supernav-sub-link"
+                      >Fraud Prevention On-Demand Webinars</a
+                    >
+                    <a
                       href="/support-training/fraud-prevention/free-internet-tools/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
                       >Free Internet Tools</a
@@ -1099,17 +1110,23 @@
                       class="supernav-sub-link"
                       >Schemes</a
                     >
+                    <a
+                      href="/globalassets/support--training/agency-support/chargeback-best-practices.pdf/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                      target="_blank"
+                      >Chargeback Best Practices</a
+                    >
 
                     <!-- <div class="supernav-contact">
-                      <div class="supernav-contact-title">
-                        Help
-                      </div>
-                      <a href="/about-us/contact-us/" class="supernav-header">
-                        Contact Us
-                      </a>
-
-                    </div>
-                    <img class="contact-image" src="https://www2.arccorp.com/globalassets/homepage/redesign/support.png" alt="Support"> -->
+                            <div class="supernav-contact-title">
+                              Help
+                            </div>
+                            <a href="/about-us/contact-us/" class="supernav-header">
+                              Contact Us
+                            </a>
+  
+                          </div>
+                          <img class="contact-image" src="https://www2.arccorp.com/globalassets/homepage/redesign/support.png" alt="Support"> -->
                   </div>
                 </div>
               </div>
@@ -1168,7 +1185,7 @@
                       Airline Sales Statistics
                     </a>
                     <a
-                      href="/about-us/our-data/?utm_source=Global_Navigation"
+                      href="/about-us/arc-data/?utm_source=Global_Navigation"
                       class="supernav-sub-link"
                       >Our Data</a
                     >
@@ -1194,6 +1211,18 @@
                     >
                       Careers
                     </a>
+                    <a
+                      href="/about-us/careers/benefits/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                    >
+                      Benefits & Perks
+                    </a>
+                    <a
+                      href="/about-us/careers/our-culture/?utm_source=Global_Navigation"
+                      class="supernav-sub-link"
+                    >
+                      Our Culture
+                    </a>
                   </div>
                   <div class="supernav-sub-main col-md-6">
                     <div class="supernav-story">
@@ -1206,12 +1235,18 @@
                       >
                         Contact Us
                       </a>
+                      <a
+                        href="/about-us/newsroom/media-kit/?utm_source=Global_Navigation"
+                        class="supernav-sub-link"
+                      >
+                        Media Kit
+                      </a>
                     </div>
                   </div>
                   <!--
-                  <div class="supernav-sub-main col-md-3">
-                    <img src="https://www2.arccorp.com/globalassets/homepage/redesign/story.png" alt="Careers">
-                  </div>-->
+                        <div class="supernav-sub-main col-md-3">
+                          <img src="https://www2.arccorp.com/globalassets/homepage/redesign/story.png" alt="Careers">
+                        </div>-->
                 </div>
               </div>
             </div>
