@@ -74,7 +74,7 @@ class RefundRow extends Component {
                 </div>
               </div>
               <div className="col-3">
-                <span className="refundLabel">Process Validity:</span>
+                <span className="refundLabel">Processing Validity:</span>
                 {data["Ticket Validity"]}
               </div>
               {(data["Phone"] || data["Email"]) && (

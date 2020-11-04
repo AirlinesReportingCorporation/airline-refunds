@@ -215,7 +215,7 @@ class App extends Component {
               <div className="col-lg-3">
                 <div className="refundFilters">
                   <div className="refundFiltersContainer">
-                    <div className="refundFiltersLabel">Process Validity</div>
+                    <div className="refundFiltersLabel">Processing Validity</div>
                     <div className="optionGroup">
                       <div
                         onClick={this.setTicketFilter.bind(this, "ALL")}
