@@ -24,8 +24,25 @@ class RefundRow extends Component {
 
     var refundClass = "refundRegular";
 
-    if (data["Refunds"].indexOf("Managing Directly") > -1 || data["Instructions 1"] || data["Instructions 2"] || data["Instructions 3"]) {
+    if (
+      data["Refunds"].indexOf("Managing Directly") > -1 ||
+      data["Instructions 1"] ||
+      data["Instructions 2"] ||
+      data["Instructions 3"]
+    ) {
       refundClass = "refundDownload";
+    }
+
+    var restrictionsTitle = data["Restrictions Link Title 1"];
+
+    //if there's a link but no title
+    if (
+      (data["Restrictions Link Title 1"] == "" ||
+        data["Restrictions Link Title 1"] == undefined) &&
+      data["Restrictions Link URL 1"] !== "" &&
+      data["Restrictions Link URL 1"] !== undefined
+    ) {
+      retrictionsTitle = "Link";
     }
 
     return (
@@ -49,10 +66,12 @@ class RefundRow extends Component {
                 {data["Numeric Code"]}
               </div>
 
-              {(data["Refund or Ticket Validity Information Last Updated"]) && (<div className="col-3">
-                <span className="refundLabel">Date Updated:</span>
-                {data["Refund or Ticket Validity Information Last Updated"]}
-              </div>)}
+              {data["Refund or Ticket Validity Information Last Updated"] && (
+                <div className="col-3">
+                  <span className="refundLabel">Date Updated:</span>
+                  {data["Refund or Ticket Validity Information Last Updated"]}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -63,7 +82,11 @@ class RefundRow extends Component {
                 <div className="refundLabel">Refunds</div>
                 <div
                   onClick={
-                    refundClass == "refundDownload" ? this.clickToggle : function(){ console.log("")}
+                    refundClass == "refundDownload"
+                      ? this.clickToggle
+                      : function() {
+                          console.log("");
+                        }
                   }
                   className={"refundPolicy" + " " + refundClass}
                 >
@@ -76,10 +99,29 @@ class RefundRow extends Component {
               <div className="col-3">
                 <span className="refundLabel">Processing Validity:</span>
                 {data["Ticket Validity"]}
+
+                {(data["Restrictions Link Title 1"] ||
+                  data["Restrictions Link URL 1"]) && (
+                  <div
+                    onClick={
+                      refundClass == "refundDownload"
+                        ? this.clickToggle
+                        : function() {
+                            console.log("");
+                          }
+                    }
+                    className={"refundPolicy" + " " + refundClass}
+                  >
+                    Restrictions
+                    {refundClass == "refundDownload" && (
+                      <i className="fas fa-arrow-down"></i>
+                    )}
+                  </div>
+                )}
               </div>
               {(data["Phone"] || data["Email"]) && (
                 <div className="col-6">
-                  <a onClick={this.clickToggle}>View Contact Information</a>
+                  <a onClick={this.clickToggle}>View Additional Information</a>
                 </div>
               )}
             </div>
@@ -99,7 +141,7 @@ class RefundRow extends Component {
                         if (item.indexOf("http") > -1) {
                           item = (
                             <a href={item} target="_blank">
-                              {item}
+                              Click here
                             </a>
                           );
                         }
@@ -114,7 +156,7 @@ class RefundRow extends Component {
                         if (item.indexOf("http") > -1) {
                           item = (
                             <a href={item} target="_blank">
-                              {item}
+                              Click here
                             </a>
                           );
                         }
@@ -129,7 +171,7 @@ class RefundRow extends Component {
                         if (item.indexOf("http") > -1) {
                           item = (
                             <a href={item} target="_blank">
-                              {item}
+                              Click here
                             </a>
                           );
                         }
@@ -156,6 +198,29 @@ class RefundRow extends Component {
                   )}
                 </div>
               )}
+
+              {data["Restrictions Link Title 1"] &&
+                data["Restrictions Link URL 1"] && (
+                  <div className="col-6">
+                    <div className="refundLabel">Restrictions</div>
+                    <div className="instructionsContainer">
+                      <p>
+                        {" "}
+                        {data["Restrictions Text"] && (
+                          <div>
+                            {data["Restrictions Text"]}
+                          </div>
+                        )}
+                        <a
+                          target="_blank"
+                          href={data["Restrictions Link URL 1"]}
+                        >
+                          {data["Restrictions Link Title 1"]}
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                )}
             </div>
           </div>
         </div>
